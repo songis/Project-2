@@ -105,7 +105,8 @@ analyzeData<-function(file.table){
   slope<-line$coefficients[2]
   yint<-line$coefficients[1]
   
-  #Displays the equation of the line of best fit using linear regression data
+  #Displays the equation of the line of best fit using linear regression data and the rate of growth in the exponential phase
   cat("The equation of the line of best fit is: y =",slope,"x +",yint,".")
+  cat("\n","The growth rate of the organism during its exponential growth phase is",slope,".")
 }
 
