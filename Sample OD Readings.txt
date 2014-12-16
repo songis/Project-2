@@ -1,4 +1,4 @@
-Hours|Absorbance
+Hours|Absorbance 1
 0|0.001
 2|0.009
 4|0.019

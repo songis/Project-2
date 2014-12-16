@@ -22,6 +22,7 @@ readData<-function(file){
   } else if(header.variable=="n"){
     data<-read.table(file,header=FALSE,sep=separator)
     return(data)
+    
     #Returns an error if there is a problem with the user input
   } else{
     cat("ERROR: Please try again.")
@@ -51,8 +52,46 @@ plotData<-function(file.table){
   yaxis<-yaxis.function()
   title<-title.function()
   
-  #Produces a plot based on data from readData and user inputs
-  plot(file.table,xlab=xaxis,ylab=yaxis,main=title)
+  #Produces a plot based on data from readData and user inputs, assuming there is only one sample
+  if(ncol(file.table)==2){
+    plot(file.table,xlab=xaxis,ylab=yaxis,main=title,pch=16)
+    
+    #Produces a plot accordingly based on number of samples in data and user inputs
+    else if(ncol(file.table)>=2){
+      
+      #Declares vectors to store user input colors and names outside of the for loop
+      sample.colors<-as.character()
+      sample.names<-as.character()
+      
+      for(i in 2:ncol(file.table)){
+        
+        #Prompts user to give the sample a name and stores it
+        name.function<-function(){
+          as.character(readline("Please enter the name of this sample: "))
+        }
+        sample.name<-name.function()
+        
+        #Prompts user to select a color to use for the sample in the plot
+        color.function<-function(){
+          as.character(readline("What color would you like to use to represent ",sample.name"?: ")
+        }
+        sample.color<-color.function()
+
+        
+        #Stores color and name in previously declared vectors for use in legend after the end of the for loop
+        append(sample.colors,sample.color)
+        append(sample.names,sample.name)
+        
+        #Plots data for sample
+        plot(file.table[,1]~file.table[,i],xlab=xaxis,ylab=yaxis,main=title,col=color)
+      }
+      
+      #Creates a legend based on user-specified location
+      cat("Please indicate where to place the legend by clicking the plot at the desired point.")
+      location<-locator(1)
+      legend(location,legend=(sample.names),col=(sample.colors),pch=16)
+    }
+  }
 }
 
 #Produces a logarithmic plot and analyzes the slope of the linear portion of the curve to determine doubling time
