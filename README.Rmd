@@ -2,15 +2,22 @@
 output: html_document
 ---
 ###README
-####Isaiah Song
 This is a simple program designed to plot microbial growth readings over time and calculate the estimated rate of growth based on data provided by the user.  It consists of three functions: readData reads in the data and stores it as a table, plotData gives a visual representation of the data as a dot plot, and analyzeData plots the data in a logarithmic graph to estimate the rate of growth during the organism's exponential growth phase.  The instructions for using the program will be shown below using two example datasets: "Sample OD Readings.txt" and "Sample OD Readings.txt 2."
 
-1. Reading in user data (readData)
+Before using the program, please set the working directory to where the program data, this "README.md", and the sample datasets ("Sample OD Readings.txt" and "Sample OD Readings 2.txt") are stored by default by either using the RStudio menu or the setwd() function.
 
-jj
+Upon setting the working directory, make sure that the R script  ("Project 2.R") and sample datasets are present in the directory and load the R script:
+
+```R
+source("Project 2.R")
+```
+
+1. Reading in your data (readData)
+
+This program is designed to read in text files (.txt) with the data arranged in columns.  The first column must be units of time while the subsequent columns must be measurable growth values, with each column representing a different sample.  If you open up the file "Sample OD Readings.txt," you can see an example of this:
 
 ```{r}
-summary(cars)
+
 ```
 
 You can also embed plots, for example:
