@@ -66,6 +66,7 @@ plotData<-function(file.table){
   #Produces a plot based on data from readData and user inputs, assuming there is only one sample
   if(ncol(file.table)==2){
     plot(file.table,xlab=xaxis,ylab=yaxis,main=title,pch=16)
+    cat("Plot generated.")
   } 
   
   #Produces a plot accordingly based on number of samples in data and user inputs
@@ -96,10 +97,10 @@ plotData<-function(file.table){
     
       #Plots data for sample 1 and plots the rest of the samples' points on it afterward
       if(i==2){
-        plot(file.table[,1]~file.table[,i],xlab=xaxis,ylab=yaxis,main=title,col=sample.color,pch=16) 
+        plot(file.table[,i]~file.table[,1],xlab=xaxis,ylab=yaxis,main=title,col=sample.color,pch=16) 
       } 
       else{
-        points(file.table[,1]~file.table[,i],col=sample.color,pch=16)
+        points(file.table[,i]~file.table[,1],col=sample.color,pch=16)
         if(i==ncol(file.table)){
         }
       }
@@ -109,6 +110,7 @@ plotData<-function(file.table){
     cat("Please indicate where to place the legend by clicking the plot at the desired point.")
     location<-locator(1)
     legend(location,legend=(sample.names),col=(sample.colors),pch=16)
+    cat("\nPlot generated.")
   }
 }
 
@@ -141,7 +143,7 @@ analyzeData<-function(file.table){
     title<-title.function()
     
     #Plots log graph
-    plot(file.table[,1],log(file.table[,2]),xlab=xaxis,ylab=yaxis,main=title)
+    plot(file.table[,1],log(file.table[,2]),xlab=xaxis,ylab=yaxis,main=title,pch=16)
     
     #Prompts user to input start point of linear portion
     start.function<-function(){
@@ -169,7 +171,7 @@ analyzeData<-function(file.table){
     
     #Displays the equation of the line of best fit using linear regression data and the rate of growth in the exponential phase
     cat("The equation of the line of best fit is: y =",slope,"x +",yint,".")
-    cat("\n","The growth rate of the organism during its exponential growth phase is",slope,".")
+    cat("\nThe growth rate of the organism during its exponential growth phase is",slope,".")
   }
 }
 
